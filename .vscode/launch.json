@@ -1,0 +1,19 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "JLink Run F103C8",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/build/target/STM32F103C8/stm32-ws2812-cube-f103c8.elf",
+      "request": "launch",
+      "type": "cortex-debug",
+      "runToEntryPoint": "main",
+      "servertype": "jlink",
+      "preLaunchTask": "Build F103C8",
+      "svdFile": "${workspaceFolder}/target/STM32F103C8/STM32F103.svd"
+    }
+  ]
+}

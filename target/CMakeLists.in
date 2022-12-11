@@ -1,0 +1,23 @@
+stm32_get_chip_info(${CHIP} FAMILY _FAMILY DEVICE _DEVICE)
+message("Configuring for ${_FAMILY} family device ${_DEVICE}")
+
+stm32_fetch_cmsis(${_FAMILY})
+if(${_FAMILY} STREQUAL "H7")
+find_package(CMSIS COMPONENTS ${CHIP}_M7 REQUIRED)
+else()
+find_package(CMSIS COMPONENTS ${CHIP} REQUIRED)
+endif()
+
+string(TOLOWER ${_DEVICE} DEVICE_LOWER)
+set(TARGET_NAME ${PROJECT_NAME}-${DEVICE_LOWER})
+add_executable(${TARGET_NAME} ${PROJECT_SOURCES})
+target_compile_definitions(${TARGET_NAME} PRIVATE DEVICE_FAMILY_${_FAMILY})
+target_include_directories(${TARGET_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/inc)
+
+if(${_FAMILY} STREQUAL "H7")
+        target_link_libraries(${TARGET_NAME} PRIVATE CMSIS::STM32::${_DEVICE}::M7 STM32::NoSys)
+else()
+        target_link_libraries(${TARGET_NAME} PRIVATE CMSIS::STM32::${_DEVICE} STM32::NoSys)
+endif()
+
+stm32_generate_hex_file(${TARGET_NAME})

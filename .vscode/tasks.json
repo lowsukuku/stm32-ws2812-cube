@@ -1,0 +1,33 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cmake",
+			"label": "Build all",
+			"command": "build",
+			"targets": [
+				"all"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"detail": "Build all targets"
+		},
+		{
+			"type": "cmake",
+			"label": "Build F103C8",
+			"command": "build",
+			"targets": [
+				"stm32-ws2812-cube-f103c8"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"problemMatcher": [],
+			"detail": "Build for STM32F103C8"
+		}
+	]
+}
